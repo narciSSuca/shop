@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use App\Http\Resources\ProfileResource;
 class UserResource extends JsonResource
 {
 
@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'uuid' =>  $this->role->uuid,
             'title' =>  $this->role->title,
           ],
-          'profile' => $this->profile,
+          'profile' => new ProfileResource($this->profile),
         ];
     }
 }

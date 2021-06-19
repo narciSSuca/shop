@@ -24,7 +24,12 @@ class SetProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          'first_name' => 'required|between:6,32|alpha',
+          'last_name' => 'required|between:6,32|alpha',
+          'patronymic' => 'required|between:6,32|alpha',
+          'email' => 'required|email',
+          'phone' => 'required',
+          'image' => 'required|image',
         ];
     }
 }

@@ -23,7 +23,7 @@ class ProfileResource extends JsonResource
           'patronymic' => $this->patronymic,
           'email' => $this->email,
           'phone' => $this->phone,
-          'image' => $this->image
+          'image' => url($this->image)
         ];
     }
 }
