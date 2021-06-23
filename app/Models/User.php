@@ -1,18 +1,19 @@
 <?php
-
 namespace App\Models;
 
-use App\Models\UserRoles;
-use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\UserRoles;
+use App\Models\Profile;
 
 
-class User extends Model
+class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
-
-    protected $table = 'users';
+    use HasFactory, Notifiable;
 
     protected $fillable = [
       'id',
@@ -20,6 +21,10 @@ class User extends Model
       'login',
       'password',
       'role_uuid',
+    ];
+
+    protected $hidden = [
+        'password',
     ];
 
     public function role()
@@ -32,6 +37,15 @@ class User extends Model
         return $this->hasOne(Profile::class, 'user_uuid','uuid');
     }
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
 
 }

@@ -10,7 +10,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use App\Models\Profile;
-
+ 
 
 class UserController extends Controller
 {

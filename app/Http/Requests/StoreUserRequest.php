@@ -25,13 +25,13 @@ class StoreUserRequest extends FormRequest
     {
         return [
           'role_uuid' => 'required|exists:user_roles,uuid',
-            'login' => 'required|between:6,32|alpha_dash',
+            'login' => 'required|unique:users,login|between:6,32|alpha_dash',
             'password' =>'required|between:6,32|alpha_dash',
-            'first_name' => 'required|between:6,32|alpha',
-            'last_name' => 'required|between:6,32|alpha',
-            'patronymic' => 'required|between:6,32|alpha',
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+            'patronymic' => 'required|alpha',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => 'required', //а если начинается с нула?
             'image' => 'required|image',
         ];
     }
